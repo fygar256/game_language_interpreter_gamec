@@ -381,7 +381,7 @@ int gameint() {
         return(0);
     if (ln) {
         v=getval10();
-        if (tron) { printf("[%d]\n ",v); }
+        if (tron) { printf("[%d]",v); fflush(stdout); }
         ln=v;
         if (*s!=' ') {
             newline();
