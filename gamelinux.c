@@ -367,6 +367,9 @@ int optional_command() {
     else if (c1=='T'&&c2=='F') {
         tron=0;
         }
+    else if (c1=='S'&&c2=='H') {
+        system("bash");
+        }
     else syntaxerror();
 }
 
