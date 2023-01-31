@@ -70,10 +70,7 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
 *QU quit
 
-
-
-
-
+*SH invoke shell
 
 
 # FILES
