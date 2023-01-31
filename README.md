@@ -76,6 +76,8 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
 # FILES
 
+conio.h                 ヘッダファイル
+
 test.gm                 サンプルプログラム/テスト
 
 fibonacci.gm            サンプルプログラム/Fibonacci数を求めます。
