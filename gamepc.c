@@ -4,7 +4,7 @@
 #include  <string.h>
 #include  "conio.h"
 
-int variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+ushort variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 char *s;
 char memory[65536];
 char strbuff[256];
@@ -14,7 +14,7 @@ int ln=0;
 void *stack[165536];
 int  sp=0;
 int tron=0;
-int mod=0;
+ushort mod=0;
 
 int load_source(char *s) {
   FILE *ifp=fopen(s,"rb");
@@ -103,16 +103,16 @@ char var() {
     return(c);
 }
 
-int getval16() {
+ushort getval16() {
      int i;
      if (!isxdigit(*s)) return(-1);
      sscanf(s,"%x",&i);
      while(isxdigit(*s)) ++s;
-     return((int)i);
+     return((ushort)i);
 }
      
-int getval10() {
-     int v;
+ushort getval10() {
+     ushort v;
      if (!isdigit(*s)) return(-1);
      v=atoi(s);
      while(isdigit(*s))
@@ -132,8 +132,8 @@ char *str() {
     return(strbuff);
 }
 
-int const_() {
-    int v;
+ushort const_() {
+    ushort v;
     if (*s=='"') {
         char *si;
         si=str();
@@ -152,10 +152,10 @@ int const_() {
    return(0);
 }
     
-int expression();
+ushort expression();
 
-int term() {
-    int v;
+ushort term() {
+    ushort v;
     char c;
     if (*s=='(') {
         skipc('(');
@@ -198,7 +198,7 @@ int term() {
         else {
             sscanf(buf,"%d",&i);
             }
-        return((int)i);
+        return((ushort)i);
         }
     else if (v=const_())
         return(v);
@@ -212,7 +212,7 @@ int term() {
            return(!(v));
        else if (c=='\'') {
            int i;
-           i=(int)(rand()%v);
+           i=(ushort)(rand()%v);
            return(i);
            }
        else if (c=='%')
@@ -220,8 +220,8 @@ int term() {
     }
 }
 
-int expression() {
-   int v,v2;
+ushort expression() {
+   ushort v,v2;
    char c;
    v=term();
    while(c=operator2()) {
@@ -271,7 +271,7 @@ int newline() {
     if (*s=='\n') s++;
 }
 
-int searchline(int v) {
+int searchline(ushort v) {
  s=pbuff;
  if (s[0]=='#')
     while(*s++!='\n' );
@@ -279,7 +279,7 @@ int searchline(int v) {
    if (s==pbuff+psize) { 
        return(-1); }
    char *p=s;
-   int n=getval10();
+   ushort n=getval10();
    s=p;
    if (n==-1) {
       return(-1);
@@ -291,7 +291,7 @@ int searchline(int v) {
    }
 }
  
-int go_to(int v) {
+int go_to(ushort v) {
  if (v==-1)
      ln=-1;
  else {
@@ -299,7 +299,7 @@ int go_to(int v) {
      }
 }
 
-int go_sub(int v) {
+int go_sub(ushort v) {
  stack[sp++]=s;
  go_to(v);
 }
@@ -314,7 +314,7 @@ int do_() {
 
 int until_() {
     char *p;
-    int v;
+    ushort v;
     p=stack[--sp];
     skipc('(');
     v= expression();
@@ -326,9 +326,9 @@ int until_() {
 }
 
 int next_() {
-    int *addr,to_,v;
+    ushort *addr,to_,v;
     char *p;
-    to_=(int )(long)stack[--sp];
+    to_=(ushort )(long)stack[--sp];
     p=stack[--sp];
     addr=stack[--sp];
     *addr=v=expression();
@@ -338,7 +338,7 @@ int next_() {
         }
 }
 
-int if_(int v) {
+int if_(ushort v) {
   if (v==0) { newline(); --s;
       }
 }
@@ -348,7 +348,7 @@ int skipspc() {
    s++;
 }
 
-int randseed(int v) {
+int randseed(ushort v) {
     srand(v);
 }
 int optional_command() {
@@ -372,7 +372,7 @@ int optional_command() {
 
 int gameint() {
     char c;
-    int v;
+    ushort v;
     while(1) { /* line */
     c=*s;
     if (c=='\0')
@@ -473,9 +473,9 @@ int gameint() {
          continue;
          }
     else if (c=var()) {
-        int *addr;
+        ushort *addr;
         if (*s==':') {
-            int v2;
+            ushort v2;
             s++;
             v=expression();
             skipc(')');
@@ -485,24 +485,24 @@ int gameint() {
             continue;
             }
         else if (*s=='(') {
-            int v2;
+            ushort v2;
             s++;
             v=expression();
             skipc(')');
             skipc('=');
             v2=term();
-            addr=(int *)&(memory[variable[toupper(c)-'A']+v*2]);
+            addr=(ushort *)&(memory[variable[toupper(c)-'A']+v*2]);
             *addr=v2;
             }
         else {
-            int v;
+            ushort v;
             skipc('=');
             v=expression();
-            addr=(int *)(&(variable[toupper(c)-'A']));
+            addr=(ushort *)(&(variable[toupper(c)-'A']));
             *addr=v;
             }
         if (*s==',') {
-            int to_;
+            ushort to_;
             s++;
             v=expression();
             to_=v;
@@ -521,7 +521,7 @@ int gameint() {
 int commandline() {
    char lb[256];
    char *f;
-   int v;
+   ushort v;
    while(1) {
      printf("\n*Ready.\n");
      f=fgets(lb,sizeof(lb)-3,stdin);
