@@ -1,0 +1,6 @@
+#!/usr/bin/gamepc
+10*Fibonacci数を求める
+100 "Input n of fibonacci(n):" N=?
+110 A=0 B=1
+120 I=0,N-1 T=A A=B B=T+B @=I+1
+130 ?=B /
