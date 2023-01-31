@@ -175,7 +175,7 @@ ushort term() {
             skipc('(');
             v=expression();
             skipc(')');
-            v=((u_char)memory[variable[toupper(c)-'A']+v*2+1])<<8+((u_char)memory[variable[toupper(c)-'A']+v*2]);
+            v=(((u_char)memory[variable[toupper(c)-'A']+v*2+1])<<8)+((u_char)memory[variable[toupper(c)-'A']+v*2]);
             return(v);
             }
         else {
