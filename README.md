@@ -48,21 +48,6 @@ Linux独特のものです。ネットで拾ったソースですが、互換性
 （と言ってもインタプリタのソースを書き換える必要がありますが)
 
 
-
-gamepc.c では、シバン（shebang;スクリプトの先頭にある#!で始まる文字列）を付けることができます。
-
-/usr/bin/にgamepcをコピーしておくと良いでしょう。ゲーム言語のスクリプトに、シバンを付けて実行権を付けると、
-
-Linuxのシェルからスクリプトをコマンドのように実行できます。
-
-
-
-ゲーム言語についてはこのサイトが詳しいようです。http://www43.tok2.com/home/cmpslv/Manual/GAME%20(J)(1979)(Ascii).pdf"
-
-GAME言語の文法はhttps://www.mztn.org/game86/を参照して下さい。
-
-
-
 このプログラムのオプショナルコマンドは次のとおりです。
 
 *TN Trace on
@@ -72,3 +57,25 @@ GAME言語の文法はhttps://www.mztn.org/game86/を参照して下さい。
 *LD load game program
 
 *QU quit
+
+
+gamepc.c では、シバン（shebang;スクリプトの先頭にある#!で始まる文字列）を付けることができます。
+
+/usr/bin/にgamepcをコピーしておくと良いでしょう。ゲーム言語のスクリプトに、シバンを付けて実行権を付けると、
+
+Linuxのシェルからスクリプトをコマンドのように実行できます。
+
+サンプルプログラムは次のとおりです
+
+test.gm テスト
+
+fibonacci.gm Fibonacci数を求めます。
+
+sieve.gm エラトステネスのふるいにより、素数を求めます。
+
+ゲーム言語についてはこのサイトが詳しいようです。http://www43.tok2.com/home/cmpslv/Manual/GAME%20(J)(1979)(Ascii).pdf"
+
+GAME言語の文法はhttps://www.mztn.org/game86/を参照して下さい。
+
+
+
