@@ -517,11 +517,16 @@ int gameint() {
     }
   }
 }
+
+int title() {
+    printf("gamelinux ver 0.8 Copyright 2023 (C) by Taisuke Maekawa\n");
+}
                
 int commandline() {
    char lb[256];
    char *f;
    ushort v;
+   title();
    while(1) {
      printf("\n*Ready.\n");
      f=fgets(lb,sizeof(lb)-3,stdin);
