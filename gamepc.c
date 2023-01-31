@@ -11,7 +11,7 @@ char strbuff[256];
 char pbuff[0x8000];
 int psize=0;
 int ln=0;
-void *stack[4096];
+void *stack[165536];
 int  sp=0;
 int tron=0;
 int mod=0;
@@ -175,7 +175,7 @@ int term() {
             skipc('(');
             v=expression();
             skipc(')');
-            v=(((u_char)memory[variable[toupper(c)-'A']+v*2+1])<<8)+(u_char)memory[variable[toupper(c)-'A']+v*2];
+            v=(((u_char)memory[variable[toupper(c)-'A']+v*2+1])<<8)+((u_char)memory[variable[toupper(c)-'A']+v*2]);
             return(v);
             }
         else {
@@ -480,7 +480,7 @@ int gameint() {
             v=expression();
             skipc(')');
             skipc('=');
-            v2=expression();
+            v2=term();
             memory[variable[toupper(c)-'A']+v]=v2&0xff;
             continue;
             }
@@ -490,7 +490,7 @@ int gameint() {
             v=expression();
             skipc(')');
             skipc('=');
-            v2=expression();
+            v2=term();
             addr=(int *)&(memory[variable[toupper(c)-'A']+v*2]);
             *addr=v2;
             }
