@@ -11,18 +11,10 @@ char strbuff[256];
 char pbuff[0x8000];
 int psize=0;
 int ln=0;
-char *stack[256];
+void *stack[256];
 int  sp=0;
 int tron=0;
 short mod=0;
-
-int load_src() {
-    char fn[256],*op=fn;
-    while(*s==' ') s++;
-    while(*s!='\n') *op++=*s++;
-    *op='\0';
-    load_source(fn);
-}
 
 int load_source(char *s) {
   FILE *ifp=fopen(s,"rb");
@@ -40,6 +32,15 @@ int load_source(char *s) {
   psize=idx;
   pbuff[idx]='\0';
 }
+
+int load_src() {
+    char fn[256],*op=fn;
+    while(*s==' ') s++;
+    while(*s!='\n') *op++=*s++;
+    *op='\0';
+    load_source(fn);
+}
+
 
 int syntaxerror() {
     printf("\nSyntaxerror in %d\n",ln);
@@ -327,7 +328,7 @@ int until_() {
 int next_() {
     short *addr,to_,v;
     char *p;
-    to_=(short )stack[--sp];
+    to_=(short )(long)stack[--sp];
     p=stack[--sp];
     addr=stack[--sp];
     *addr=v=expression();
@@ -349,6 +350,24 @@ int skipspc() {
 
 int randseed(short v) {
     srand(v);
+}
+int optional_command() {
+     char c1,c2;
+     c1=toupper(*s++);
+     c2=toupper(*s++);
+     if (c1=='L' && c2=='D') {
+         load_src();
+         }
+    else if (c1=='Q'&&c2=='U') {
+        exit(0);
+        }
+    else if (c1=='T'&&c2=='N') {
+        tron=1;
+        }
+    else if (c1=='T'&&c2=='F') {
+        tron=0;
+        }
+    else syntaxerror();
 }
 
 int gameint() {
@@ -384,23 +403,8 @@ int gameint() {
         continue;
         }
     else if (c=='*') {
-         char c1,c2;
-         s++;
-         c1=toupper(*s++);
-         c2=toupper(*s++);
-         if (c1=='L' && c2=='D') {
-             load_src();
-             }
-        else if (c1=='Q'&&c2=='U') {
-            exit(0);
-            }
-        else if (c1=='T'&&c2=='N') {
-            tron=1;
-            }
-        else if (c1=='T'&&c2=='F') {
-            tron=0;
-            }
-        else syntaxerror();
+        s++;
+        optional_command();
         continue;
         }
     else if (c=='?') { s++;
@@ -504,7 +508,7 @@ int gameint() {
             to_=v;
             stack[sp++]=(char *)addr;
             stack[sp++]=s;
-            stack[sp++]=(char *)to_;
+            stack[sp++]=(char *)(long)to_;
             }
         continue;
         }
