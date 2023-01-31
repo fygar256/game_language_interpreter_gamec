@@ -1,4 +1,4 @@
-#!/usr/bin/gamepc
+#!/usr/bin/gamelinux
 10 "Primes up to " N=?
 1000 A=$0
 1100 I=0,N A(I)=I @=I+1
