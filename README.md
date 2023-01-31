@@ -61,13 +61,17 @@ gamepc.c では、シバン（shebang;スクリプトの先頭にある#!で始�
 
 Linuxのシェルからスクリプトをコマンドのように実行できます。
 
-サンプルプログラムは次のとおりです
+# FILES
 
-test.gm テスト
+test.gm                 サンプルプログラム/テスト
 
-fibonacci.gm Fibonacci数を求めます。
+fibonacci.gm            サンプルプログラム/Fibonacci数を求めます。
 
-sieve.gm エラトステネスのふるいにより、素数を求めます。
+sieve.gm                サンプルプログラム/エラトステネスのふるいにより、素数を求めます。
+
+gamepc_0.8-1_amd64.deb  実行ファイル(バイナリ)
+
+# Sites
 
 ゲーム言語についてはこのサイトが詳しいようです。http://www43.tok2.com/home/cmpslv/Manual/GAME%20(J)(1979)(Ascii).pdf"
 
