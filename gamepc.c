@@ -332,7 +332,7 @@ int next_() {
     p=stack[--sp];
     addr=stack[--sp];
     *addr=v=expression();
-    if (v<to_) {
+    if (v<=to_) {
         s=p;
         sp+=3;
         }
