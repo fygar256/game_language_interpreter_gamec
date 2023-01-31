@@ -6,7 +6,7 @@
 
 ushort variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 char *s;
-char memory[65536];
+u_char memory[65536];
 char strbuff[256];
 char pbuff[0x8000];
 int psize=0;
