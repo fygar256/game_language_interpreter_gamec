@@ -74,6 +74,8 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
 
 
+
+
 # FILES
 
 conio.h                 ヘッダファイル
