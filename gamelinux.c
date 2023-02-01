@@ -316,9 +316,7 @@ int until_() {
     char *p;
     ushort v;
     p=stack[--sp];
-    skipc('(');
     v= expression();
-    skipc(')');
     if (!v) {
         s=p;
         sp+=1;
