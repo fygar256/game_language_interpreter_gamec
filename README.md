@@ -19,9 +19,7 @@ GAME言語は今は廃れてしまいましたが、
 
 # Compile & Execute
 
-カレントディレクトリにgamelinux.cとconio.hを置き、
-
-$ cc gamelinux.c -o gamelinux
+$ make
 
 としてコンパイルして下さい。
 
@@ -44,8 +42,6 @@ gamelinuxでは、シバン（shebang;スクリプトの先頭にある#!で始�
 を付けることができます。gamelinuxのスクリプトに、シバンを付けて実行権を付けると、
 
 Linuxのシェルからコマンドのように実行できます。
-
-/usr/bin/にgamelinuxをコピーしておくと良いでしょう。
 
 バイナリをインストールすると、/usr/bin/に配置されます。
 
@@ -166,7 +162,9 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
    
 # FILES
 
-        conio.h                    ヘッダファイル
+        Makefile                   Makefile
+
+        conio.c                    ソースファイル
 
         gamelinux.c                ソースファイル
 
