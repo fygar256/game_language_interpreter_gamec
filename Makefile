@@ -1,6 +1,7 @@
 CC      = /usr/bin/cc 
 FAKEROOT = /usr/bin/fakeroot
 RM      = /bin/rm
+CP      = /bin/cp
 CFLAGS  =
 TARGET  = gamelinux
 SRCS    = gamelinux.c conio.c
@@ -11,6 +12,7 @@ LIBS    =
 
 $(TARGET): $(OBJS)
 		$(CC) $(CFLAGS) $^ -o $@ $(LIBDIR) $(LIBS)
+		sudo $(CP) $(TARGET) /usr/bin/
 
 $(OBJS): $(SRCS)
 		$(CC) $(CFLAGS) $(INCDIR) -c $(SRCS)
@@ -22,7 +24,7 @@ delobj:
 		$(RM) -rf $(OBJS)
 
 deb: $(TARGET)
-		cp $(TARGET) work/usr/bin/
+		$(CP) $(TARGET) work/usr/bin/
 		$(FAKEROOT) dpkg-deb --build work .
 
 all: clean $(OBJS) $(TARGET) deb
