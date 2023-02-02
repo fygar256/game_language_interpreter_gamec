@@ -8,10 +8,10 @@ ushort variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 char *s;
 u_char memory[65536];
 char strbuff[256];
-char pbuff[0x8000];
+char pbuff[65536];
 int psize=0;
 int ln=0;
-void *stack[165536];
+void *stack[65536];
 int  sp=0;
 int tron=0;
 ushort mod=0;
@@ -43,7 +43,7 @@ int load_src() {
 
 
 int syntaxerror() {
-    printf("\nSyntaxerror in %d\n",ln);
+    printf("\nSyntaxerror in %d",ln);
     fflush(stdout);
 }
 
@@ -157,37 +157,37 @@ ushort expression();
 ushort term() {
     ushort v;
     char c;
-    if (*s=='(') {
+    if (*s=='(') {            // (exp)
         skipc('(');
         v=expression();
         skipc(')'); 
         return(v);
         }
     else if (c=var()) {
-        if (*s==':') {
+        if (*s==':') {       // V:exp)
             skipc(':');
             v=expression();
             skipc(')');
             v=memory[variable[toupper(c)-'A']+v];
             return(v);
             }
-        else if (*s=='(') {
+        else if (*s=='(') {  // V(exp)
             skipc('(');
             v=expression();
             skipc(')');
             v=(((u_char)memory[variable[toupper(c)-'A']+v*2+1])<<8)+((u_char)memory[variable[toupper(c)-'A']+v*2]);
             return(v);
             }
-        else {
+        else {               // V
             v=variable[toupper(c)-'A'];
             return(v);
             }
         }
-    else if (*s=='$' && !isxdigit(*(s+1))) {
+    else if (*s=='$' && !isxdigit(*(s+1))) { // getch
         s++;
         return(getch());
         }
-    else if (*s=='?') {
+    else if (*s=='?') { // input
         int i;
         char buf[256];
         s++;
@@ -200,9 +200,9 @@ ushort term() {
             }
         return((ushort)i);
         }
-    else if (v=const_())
+    else if (v=const_())  // const
         return(v);
-    else if (c=operator1(*s)) {
+    else if (c=operator1(*s)) {  // term
         v=term();
         if (c=='-')
            return(-v);
@@ -276,14 +276,13 @@ int searchline(ushort v) {
  if (s[0]=='#')
     while(*s++!='\n' );
  while(1) {
-   if (s==pbuff+psize) { 
-       return(-1); }
+   if (s==pbuff+psize)
+       return(-1);
    char *p=s;
    ushort n=getval10();
    s=p;
-   if (n==-1) {
+   if (n==-1)
       return(-1);
-      }
    if (n>=v)
      return(n);
    else
@@ -294,9 +293,8 @@ int searchline(ushort v) {
 int go_to(ushort v) {
  if (v==-1)
      ln=-1;
- else {
+ else
      ln=searchline(v);
-     }
 }
 
 int go_sub(ushort v) {
@@ -310,7 +308,7 @@ int return_() {
 
 int do_() {
     stack[sp++]=s;
-    }
+}
 
 int until_() {
     char *p;
@@ -349,25 +347,21 @@ int skipspc() {
 int randseed(ushort v) {
     srand(v);
 }
+
 int optional_command() {
      char c1,c2;
      c1=toupper(*s++);
      c2=toupper(*s++);
-     if (c1=='L' && c2=='D') {
+     if (c1=='L' && c2=='D')
          load_src();
-         }
-    else if (c1=='Q'&&c2=='U') {
+    else if (c1=='Q'&&c2=='U')
         exit(0);
-        }
-    else if (c1=='T'&&c2=='N') {
+    else if (c1=='T'&&c2=='N')
         tron=1;
-        }
-    else if (c1=='T'&&c2=='F') {
+    else if (c1=='T'&&c2=='F')
         tron=0;
-        }
-    else if (c1=='S'&&c2=='H') {
+    else if (c1=='S'&&c2=='H')
         system("bash");
-        }
     else syntaxerror();
 }
 
@@ -530,7 +524,7 @@ int commandline() {
    title();
    while(1) {
      printf("\n*Ready.\n");
-     f=fgets(lb,sizeof(lb)-3,stdin);
+     f=fgets(lb,sizeof(lb)-1,stdin);
      if (f==NULL)
         exit(1);
      ln=0;
