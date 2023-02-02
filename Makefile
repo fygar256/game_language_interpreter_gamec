@@ -12,8 +12,6 @@ LIBS    =
 
 $(TARGET): $(OBJS)
 		$(CC) $(CFLAGS) $^ -o $@ $(LIBDIR) $(LIBS)
-		echo "Enter Administrator's Password."
-		sudo $(CP) $(TARGET) /usr/bin/
 
 $(OBJS): $(SRCS)
 		$(CC) $(CFLAGS) $(INCDIR) -c $(SRCS)
@@ -24,8 +22,11 @@ clean:
 delobj:
 		$(RM) -rf $(OBJS)
 
+install:
+		sudo $(CP) $(TARGET) /usr/bin/
+
 deb: $(TARGET)
 		$(CP) $(TARGET) work/usr/bin/
 		$(FAKEROOT) dpkg-deb --build work .
 
-all: clean $(OBJS) $(TARGET) deb
+all: clean $(OBJS) $(TARGET) deb install
