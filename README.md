@@ -162,13 +162,9 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
    
 # FILES
 
-        Makefile                   Makefile
-
-        conio.c                    ソースファイル
-
         gamelinux.c                ソースファイル
 
-        gamelinux_0.9-1_amd64.deb  実行ファイル(バイナリ)
+        gamelinux_0.9.1-1_amd64.deb  実行ファイル(バイナリ)
 
         syntax.doc                 文法
 
@@ -186,7 +182,6 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 # 可搬性
 
 一文字キー入力のgetch()関数だけがLinux固有のものです。
-getch()関数はconio.cにあります。
 getch()問題さえクリアできれば、ターミナルだったらどんな機種でも動くと思います。
 
 # 履歴
