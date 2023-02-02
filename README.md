@@ -63,9 +63,13 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 このプログラムのオプショナルコマンドは次のとおりです。
 
 *TN Trace on
+
 *TF Trace off
+
 *LD load game program
+
 *QU quit
+
 *SH invoke shell
 
    
