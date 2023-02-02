@@ -4,7 +4,7 @@ RM      = /bin/rm
 CP      = /bin/cp
 CFLAGS  =
 TARGET  = gamelinux
-SRCS    = gamelinux.c conio.c
+SRCS    = gamelinux.c
 OBJS    = $(SRCS:.c=.o)
 INCDIR  =
 LIBDIR  = 

@@ -2,6 +2,8 @@
 #include  <ctype.h>
 #include  <stdlib.h>
 #include  <string.h>
+#include <termios.h>
+#include <unistd.h>
 
 ushort variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 char *s;
@@ -14,7 +16,19 @@ void *stack[65536];
 int  sp=0;
 int tron=0;
 ushort mod=0;
-int getch();
+
+int getch(){
+      struct termios oldt, newt;
+      int c;
+      tcgetattr( STDIN_FILENO, &oldt );
+      newt = oldt;
+      newt.c_lflag &= ~ICANON;
+      newt.c_lflag &= ~ECHO;
+      tcsetattr( STDIN_FILENO, TCSANOW, &newt );
+      c = getchar();
+      tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
+      return c;
+}
 
 int skipspc() {
   while(*s==' ')
