@@ -97,7 +97,7 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
     <1バイト配列> ::= 変数名 ( <式> )
 
-　　　   変数の値 + 2 * 式の値 のアドレスの内容を値とする．
+        変数の値 + 2 * 式の値 のアドレスの内容を値とする．
 
     <2バイト配列> ::= 変数名 : <式> )
 
@@ -153,15 +153,15 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
 オプショナルコマンドは次のとおりです。
 
-  *TN Trace on
+        *TN Trace on
 
-  *TF Trace off
+        *TF Trace off
 
-  *LD load game program
+        *LD load game program
 
-  *QU quit
+        *QU quit
 
-  *SH invoke shell
+        *SH invoke shell
 
    
 # FILES
