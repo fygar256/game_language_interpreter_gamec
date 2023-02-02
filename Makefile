@@ -12,6 +12,7 @@ LIBS    =
 
 $(TARGET): $(OBJS)
 		$(CC) $(CFLAGS) $^ -o $@ $(LIBDIR) $(LIBS)
+		echo "Enter Administrator's Password."
 		sudo $(CP) $(TARGET) /usr/bin/
 
 $(OBJS): $(SRCS)
