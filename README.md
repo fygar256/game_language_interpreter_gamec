@@ -85,8 +85,6 @@ gamelinux_0.9-1_amd64.deb  実行ファイル(バイナリ)
 
 ゲーム言語についてはこのサイトが詳しいようです。http://www43.tok2.com/home/cmpslv/Manual/GAME%20(J)(1979)(Ascii).pdf"
 
-GAME言語の文法はhttps://www.mztn.org/game86/ を参照して下さい。
-
 # 履歴
 
 2023年1月31日 16ビット配列の取得の所にバグがあったので訂正。
