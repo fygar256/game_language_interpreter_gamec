@@ -166,15 +166,20 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
    
 # FILES
 
-conio.h                 ヘッダファイル
+conio.h                    ヘッダファイル
 
-test.gm                 サンプルプログラム/テスト
-
-fibonacci.gm            サンプルプログラム/Fibonacci数を求めます。
-
-sieve.gm                サンプルプログラム/エラトステネスのふるいにより、素数を求めます。
+gamelinux.c                ソースファイル
 
 gamelinux_0.9-1_amd64.deb  実行ファイル(バイナリ)
+
+syntax.doc                 文法
+
+samples/test.gm            テスト
+
+samples/fibonacci.gm       Fibonacci数を求めます。
+
+samples/sieve.gm           エラトステネスのふるいにより、素数を求めます。
+
 
 # Sites
 
