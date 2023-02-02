@@ -25,7 +25,7 @@ $ make
 
 実行は、
 
-$ ./gamelinux [file.gm]
+$ gamelinux [file.gm]
 
 として動かして下さい。
 
