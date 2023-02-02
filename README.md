@@ -17,7 +17,7 @@ GAME言語は今は廃れてしまいましたが、
 
 実用とは程遠いものですが、まあ、遊びだと思って下さい。一応制御構文などは全部動きます。
 
-# Compile & Execute & Install
+# Compile & Install & Execute
 
 $ make install
 
