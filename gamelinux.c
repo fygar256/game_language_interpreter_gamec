@@ -16,6 +16,12 @@ int  sp=0;
 int tron=0;
 ushort mod=0;
 
+int skipspc() {
+  while(*s==' ')
+   s++;
+}
+
+
 int load_source(char *s) {
   FILE *ifp=fopen(s,"rb");
   int idx=0;
@@ -157,9 +163,11 @@ ushort expression();
 ushort term() {
     ushort v;
     char c;
+    skipspc();
     if (*s=='(') {            // (exp)
         skipc('(');
         v=expression();
+        skipspc();
         skipc(')'); 
         return(v);
         }
@@ -223,8 +231,10 @@ ushort term() {
 ushort expression() {
    ushort v,v2;
    char c;
+   skipspc();
    v=term();
-   while(c=operator2()) {
+   while(1) {
+     if ((c=operator2())==0) break;
      v2=term();
      switch (c) {
      case '+':
@@ -337,11 +347,6 @@ int next_() {
 int if_(ushort v) {
   if (v==0) { newline(); --s;
       }
-}
-
-int skipspc() {
-  while(*s==' ')
-   s++;
 }
 
 int randseed(ushort v) {
