@@ -183,7 +183,7 @@ ushort term() {
             return(v);
             }
         }
-    else if (*s=='$' && !isxdigit(*(s+1))) { // getch
+    else if ((*s=='$') && (!isxdigit(*(s+1)))) { // getch
         s++;
         return(getch());
         }
@@ -425,7 +425,7 @@ int gameint() {
             v2=expression();
             skipc(')');
             skipc('=');
-            v=term();
+            v=expression();
             snprintf(buf,12,"%d",v2);
             b2[0]='\0';
             strcat(b2,"%");
@@ -475,7 +475,7 @@ int gameint() {
             v=expression();
             skipc(')');
             skipc('=');
-            v2=term();
+            v2=expression();
             memory[variable[toupper(c)-'A']+v]=v2&0xff;
             continue;
             }
@@ -485,7 +485,7 @@ int gameint() {
             v=expression();
             skipc(')');
             skipc('=');
-            v2=term();
+            v2=expression();
             addr=(ushort *)&(memory[variable[toupper(c)-'A']+v*2]);
             *addr=v2;
             }
@@ -514,7 +514,7 @@ int gameint() {
 }
 
 int title() {
-    printf("gamelinux ver 0.8 Copyright 2023 (C) by Taisuke Maekawa\n");
+    printf("gamelinux ver 0.9 Copyright 2023 (C) by Taisuke Maekawa\n");
 }
                
 int commandline() {
