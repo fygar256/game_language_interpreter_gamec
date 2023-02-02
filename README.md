@@ -83,7 +83,7 @@ fibonacci.gm            サンプルプログラム/Fibonacci数を求めます�
 
 sieve.gm                サンプルプログラム/エラトステネスのふるいにより、素数を求めます。
 
-gamelinux_0.8-1_amd64.deb  実行ファイル(バイナリ)
+gamelinux_0.9-1_amd64.deb  実行ファイル(バイナリ)
 
 # Sites
 
