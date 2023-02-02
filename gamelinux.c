@@ -2,7 +2,6 @@
 #include  <ctype.h>
 #include  <stdlib.h>
 #include  <string.h>
-#include  "conio.h"
 
 ushort variable['Z'-'A'+1]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 char *s;
@@ -15,6 +14,7 @@ void *stack[65536];
 int  sp=0;
 int tron=0;
 ushort mod=0;
+int getch();
 
 int skipspc() {
   while(*s==' ')
