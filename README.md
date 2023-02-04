@@ -172,6 +172,8 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
         *QU quit
 
         *SH invoke shell
+        
+        *FM <n> for mode i.e. if n=0, A=1,0 "STR" @=A+1 doesn't output a string. else "STR" will be output.
 
    
 # FILES
@@ -208,5 +210,5 @@ getch()問題さえクリアできれば、ターミナルだったらどんな�
 
 2023年2月3日　getch()内包
 
-2023年2月4日  for文のバグ修正 ver 0.9.2
+2023年2月4日  for文修正 ver 0.9.2
 
