@@ -1,3 +1,4 @@
+
 #include  <stdio.h>
 #include  <ctype.h>
 #include  <stdlib.h>
@@ -214,12 +215,10 @@ ushort term() {
         char buf[256];
         s++;
         scanf("%s",buf);
-        if (buf[0]=='$') {
+        if (buf[0]=='$')
             sscanf(buf+1,"%x",&i);
-            }
-        else {
+        else
             sscanf(buf,"%d",&i);
-            }
         return((ushort)i);
         }
     else if (v=const_())  // const
@@ -251,37 +250,16 @@ ushort expression() {
      if ((c=operator2())==0) break;
      v2=term();
      switch (c) {
-     case '+':
-       v+=v2;
-       break;
-     case '-':
-       v-=v2;
-       break;
-     case '*':
-       v*=v2;
-       break;
-     case '/':
-       v/=v2;
-       mod=v%v2;
-       break;
-     case '=':
-       v=(v==v2);
-       break;
-     case '<':
-       v=(v<v2);
-       break;
-     case 'N':
-       v=(v!=v2);
-       break;
-     case 'A':
-       v=(v<=v2);
-       break;
-     case '>':
-       v=(v>v2);
-       break;
-     case 'B':
-       v=(v>=v2);
-       break;
+     case '+': v+=v2; break;
+     case '-': v-=v2; break;
+     case '*': v*=v2; break;
+     case '/': v/=v2; mod=v%v2; break;
+     case '=': v=(v==v2); break;
+     case '<': v=(v<v2); break;
+     case 'N': v=(v!=v2); break;
+     case 'A': v=(v<=v2); break;
+     case '>': v=(v>v2); break;
+     case 'B': v=(v>=v2); break;
        }
      }
   return(v);
@@ -348,7 +326,7 @@ int until_() {
 int next_() {
     ushort *addr,to_,v;
     char *p;
-    to_=(ushort )(long)stack[--sp];
+    to_=(ushort )(ulong)stack[--sp];
     p=stack[--sp];
     addr=stack[--sp];
     *addr=v=expression();
@@ -487,29 +465,28 @@ int gameint() {
          continue;
          }
     else if (c=var()) {
-        ushort *addr;
+        ushort v,*addr;
         if (*s==':') {
-            ushort v2;
+            ushort v2,vidx;
             s++;
-            v=expression();
+            vidx=expression();
             skipc(')');
             skipc('=');
             v2=expression();
-            memory[variable[toupper(c)-'A']+v]=v2&0xff;
+            memory[variable[toupper(c)-'A']+vidx]=v2&0xff;
             continue;
             }
         else if (*s=='(') {
-            ushort v2;
+            ushort vidx;
             s++;
-            v=expression();
+            vidx=expression();
             skipc(')');
             skipc('=');
-            v2=expression();
-            addr=(ushort *)&(memory[variable[toupper(c)-'A']+v*2]);
-            *addr=v2;
+            v=expression();
+            addr=(ushort *)&(memory[variable[toupper(c)-'A']+vidx*2]);
+            *addr=v;
             }
         else {
-            ushort v;
             skipc('=');
             v=expression();
             addr=(ushort *)(&(variable[toupper(c)-'A']));
@@ -517,12 +494,25 @@ int gameint() {
             }
         if (*s==',') {
             ushort to_;
-            s++;
-            v=expression();
-            to_=v;
-            stack[sp++]=(char *)addr;
-            stack[sp++]=s;
-            stack[sp++]=(char *)(long)to_;
+            skipc(',');
+            to_=expression();
+            if (v>to_) { // if initial_value > to_value, skip to the end of next NEXT
+              int eof=0;
+              while(*s!='@') {
+                  if (*s=='\0') { eof=1; break; }
+                  s++;
+                  }
+              if (!eof) {
+                skipc('@');
+                skipc('=');
+                expression();
+                }
+              }
+            else {
+              stack[sp++]=(char *)addr;
+              stack[sp++]=s;
+              stack[sp++]=(char *)(ulong)to_;
+              }
             }
         continue;
         }
@@ -533,7 +523,7 @@ int gameint() {
 }
 
 int title() {
-    printf("gamelinux ver 0.9 Copyright 2023 (C) by Taisuke Maekawa\n");
+    printf("gamelinux ver 0.9.2 Copyright 2023 (C) by Taisuke Maekawa\n");
 }
                
 int commandline() {
@@ -562,4 +552,3 @@ int main(int argc,char *argv[]) {
        }
     else commandline();
 }
-
