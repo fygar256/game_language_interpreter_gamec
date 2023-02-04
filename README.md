@@ -19,15 +19,29 @@ GAME言語は今は廃れてしまいましたが、
 
 # Compile & Install & Execute
 
-$ make install
+## ソースから
 
-としてインストールして下さい。
+　$ cc gamelinux.c -o gamelinux
 
+　としてコンパイルし、
+
+　$ sudo cp gameliux /usr/bin/ 
+
+　としてインストールして下さい。
+
+##　パッケージから
+
+  $ sudo dpkg -i gamelinux*.deb
+  
+  としてインストールして下さい。
+  
 実行は、
 
 $ gamelinux [file.gm]
 
 として動かして下さい。
+
+# 使い方
 
 このプログラムは引数なしで実行させると、プロンプトがでて、キーボードから入力を取り、
 
@@ -43,7 +57,7 @@ gamelinuxでは、シバン（shebang;スクリプトの先頭にある#!で始�
 
 Linuxのシェルからコマンドのように実行できます。
 
-バイナリをインストールすると、/usr/bin/に配置されます。
+パッケージバイナリをインストールすると、/usr/bin/に配置されます。
 
 gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込んで下さい。#=1でrunです。
 
