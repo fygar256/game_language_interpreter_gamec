@@ -254,7 +254,8 @@ ushort expression() {
      case '+': v+=v2; break;
      case '-': v-=v2; break;
      case '*': v*=v2; break;
-     case '/': v/=v2; mod=v%v2; break;
+     case '/': mod=v%v2; if (v2==0) {printf("Division by zero\n");v=-1;break; }
+                         else { v/=v2; break; }
      case '=': v=(v==v2); break;
      case '<': v=(v<v2); break;
      case 'N': v=(v!=v2); break;
