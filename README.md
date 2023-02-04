@@ -25,7 +25,7 @@ GAME言語は今は廃れてしまいましたが、
 
 　としてコンパイルし、
 
-　$ sudo cp gameliux /usr/bin/ 
+　$ sudo cp gamelinux /usr/bin/ 
 
 　としてインストールして下さい。
 
@@ -37,9 +37,9 @@ GAME言語は今は廃れてしまいましたが、
   
 実行は、
 
-$ gamelinux [file.gm]
+  $ gamelinux [file.gm]
 
-として動かして下さい。
+  として動かして下さい。
 
 # 使い方
 
