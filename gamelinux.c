@@ -17,6 +17,7 @@ void *stack[65536];
 int  sp=0;
 int tron=0;
 ushort mod=0;
+int for_mode=0;
 
 int getch(){
       struct termios oldt, newt;
@@ -359,6 +360,10 @@ int optional_command() {
         tron=0;
     else if (c1=='S'&&c2=='H')
         system("bash");
+    else if (c1=='F'&&c2=='M') {
+       ushort v=expression();
+       for_mode=v;
+       }
     else syntaxerror();
 }
 
@@ -496,7 +501,7 @@ int gameint() {
             ushort to_;
             skipc(',');
             to_=expression();
-            if (v>to_) { // if initial_value > to_value, skip to the end of next NEXT
+            if (v>to_ && for_mode==0) { // if initial_value > to_value, skip to the end of next NEXT
               int eof=0;
               while(*s!='@') {
                   if (*s=='\0') { eof=1; break; }
