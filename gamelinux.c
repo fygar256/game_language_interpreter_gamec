@@ -501,7 +501,8 @@ int gameint() {
             ushort to_;
             skipc(',');
             to_=expression();
-            if (v>to_ && for_mode!=0) { // if for mode and initial_value > to_value, skip to the end of next NEXT
+            if (v>to_ && (for_mode)) { // if for mode not equals to 0
+                                          //  and initial_value > to_value, skip to the end of next NEXT
               int eof=0;
               while(*s!='@') {
                   if (*s=='\0') { eof=1; break; }
