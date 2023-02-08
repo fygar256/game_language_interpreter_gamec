@@ -37,7 +37,6 @@ int skipspc() {
    s++;
 }
 
-
 int load_source(char *s) {
   FILE *ifp=fopen(s,"rb");
   int idx=0;
@@ -502,7 +501,7 @@ int gameint() {
             ushort to_;
             skipc(',');
             to_=expression();
-            if (v>to_ && for_mode==0) { // if initial_value > to_value, skip to the end of next NEXT
+            if (v>to_ && for_mode!=0) { // if for mode and initial_value > to_value, skip to the end of next NEXT
               int eof=0;
               while(*s!='@') {
                   if (*s=='\0') { eof=1; break; }
@@ -529,7 +528,7 @@ int gameint() {
 }
 
 int title() {
-    printf("gamelinux ver 0.9.2 Copyright 2023 (C) by Taisuke Maekawa\n");
+    printf("gamelinux ver 0.9.3 by Taisuke Maekawa\n");
 }
                
 int commandline() {
