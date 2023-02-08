@@ -1,5 +1,5 @@
 #!/usr/bin/gamelinux
-100 *FM1
+100 *FM0
 1000#====LifeGame Test====
 1010 $=$1B "[2JLifeGame" /
 1020 A=$1000 B=$1800
