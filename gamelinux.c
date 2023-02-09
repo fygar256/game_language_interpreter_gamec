@@ -38,7 +38,7 @@ int skipspc() {
 }
 
 int load_source(char *s) {
-  FILE *ifp=fopen(s,"rb");
+  FILE *ifp=fopen(s,"r");
   int idx=0;
   if (ifp) {
     while(idx<sizeof(pbuff)-1) {
