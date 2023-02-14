@@ -188,7 +188,7 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
         *SH       invoke shell
         
-        *FM <n>   for mode i.e. if n=0, A=1,0 "STR" @=A+1 outputs a string (GAME Language mode).
+        *FM <n>   for mode;  if n=0, A=1,0 "STR" @=A+1 outputs a string (GAME Language mode).
                   else "STR" will not be output (other language mode).
 
    
