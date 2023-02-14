@@ -178,17 +178,18 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
 
 オプショナルコマンドは次のとおりです。
 
-        *TN Trace on
+        *TN       Trace on
 
-        *TF Trace off
+        *TF       Trace off
 
-        *LD load game program
+        *LD       load game program
 
-        *QU quit
+        *QU       quit
 
-        *SH invoke shell
+        *SH       invoke shell
         
-        *FM <n> for mode i.e. if n=0, A=1,0 "STR" @=A+1 doesn't output a string. else "STR" will be output.
+        *FM <n>   for mode i.e. if n=0, A=1,0 "STR" @=A+1 outputs a string (GAME Language mode).
+                  else "STR" will not be output (other language mode).
 
    
 # FILES
