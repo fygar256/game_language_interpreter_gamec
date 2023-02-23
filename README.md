@@ -205,6 +205,8 @@ gamelinuxのコマンドプロンプトからは*ld file.gmとして読み込ん
         samples/fibonacci.gm       Fibonacci数を求めます。
 
         samples/sieve.gm           エラトステネスのふるいにより、素数を求めます。
+        
+        samples/factor.gm          素因数分解をします。
 
 
 # Sites
