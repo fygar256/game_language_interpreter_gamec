@@ -1,0 +1,17 @@
+#!/usr/bin/gamelinux
+1000 "Input natural number : " N=?
+1010 Z=$0000 !=1100
+1020 ?=N ":"
+1030 I=0,J-1 ?=Z(I) " " @=I+1
+1040 /
+1050 #=-1
+1100#
+1101# Sub routine of PrimeFactorization
+1103#
+1105 I=2 J=0 M=N
+1110 ;=M=0 J=0 ]
+1120 ;=M=1 Z(0)=1 J=1 ]
+1130 ;=M=1 ]
+1135   H=M/I
+1136   ;=%1=0 Z(J)=I M=H J=J+1 #=1130
+1140     I=I+1 #=1130
