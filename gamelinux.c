@@ -627,6 +627,7 @@ int title()
     printf("gamelinux ver 0.9.3 by Taisuke Maekawa\n");
 }
 
+/*
 int commandline()
 {
     char lb[256];
@@ -644,6 +645,7 @@ int commandline()
         gameint();
     }
 }
+*/
 
 int main(int argc,char *argv[])
 {
@@ -652,5 +654,7 @@ int main(int argc,char *argv[])
         load_source(argv[1]);
         go_to(1);
         gameint();
-    } else commandline();
+    } else {
+        printf("Usage: gamelinux file\n");
+    }
 }
