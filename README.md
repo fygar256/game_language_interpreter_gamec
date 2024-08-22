@@ -8,7 +8,7 @@ GAME言語は今は廃れてしまいましたが、1980年前後にマイコン
 
 コンパイル、インストール、実行
 
-カレントディレクトリにgamelinux.cを置き、コンソールで、cc gamelinux.c -o gamelinuxとしてコンパイルて下さい。
+カレントディレクトリにgamelinux.cを置き、コンソールで、cc gamelinux.c -o gamelinuxとしてコンパイルして下さい。
 
 インストールは、sudo cp gamelinux /usr/bin/として、/usr/bin/にgamelinuxを配置するだけです。
 
