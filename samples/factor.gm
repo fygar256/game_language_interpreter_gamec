@@ -1,4 +1,4 @@
-#!/usr/bin/gamelinux
+#!/usr/bin/gamec
 1000 "Input natural number : " N=?
 1010 Z=$0000 !=1100
 1020 ?=N ":"
